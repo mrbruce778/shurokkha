@@ -1,0 +1,5 @@
+<?php
+use App\Http\Controllers\AuthController;
+
+Route::post('/signin', [AuthController::class, 'signIn']);
+Route::post('/verify-otp', [AuthController::class, 'verifyOtp']);
