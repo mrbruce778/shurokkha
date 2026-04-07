@@ -83,7 +83,7 @@ class AuthController extends Controller
 
         return response()->json([
             'status' => true,
-            'message' => 'OTP Verified',
+            'message' => 'OTP verified',
             'data' => [
                 'user' => $user,
                 'token' => $user->api_token,
