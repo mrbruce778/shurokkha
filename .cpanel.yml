@@ -1,8 +1,7 @@
 deployment:
   tasks:
-    - DEPLOYPATH=/home8/attoexaso/shurokkha.attoexasolutions.com/
-    - /bin/rsync -av --delete --exclude=".env" ./ $DEPLOYPATH
-    - cd $DEPLOYPATH
+    - /bin/rsync -av --delete --exclude=".env" ./ /home8/attoexaso/shurokkha.attoexasolutions.com/
+    - cd /home8/attoexaso/shurokkha.attoexasolutions.com/
     - composer install --no-dev --optimize-autoloader
     - php artisan migrate --force
     - php artisan config:cache
