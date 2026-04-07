@@ -1,9 +1,10 @@
+---
 deployment:
   tasks:
     - /bin/rsync -av --delete --exclude=".env" ./ /home8/attoexaso/shurokkha.attoexasolutions.com/
     - cd /home8/attoexaso/shurokkha.attoexasolutions.com/
-    - composer install --no-dev --optimize-autoloader
-    - php artisan migrate --force
-    - php artisan config:cache
-    - php artisan route:cache
-    - php artisan view:cache
+    - /usr/local/bin/composer install --no-dev --optimize-autoloader
+    - /usr/local/bin/php artisan migrate --force
+    - /usr/local/bin/php artisan config:cache
+    - /usr/local/bin/php artisan route:cache
+    - /usr/local/bin/php artisan view:cache
