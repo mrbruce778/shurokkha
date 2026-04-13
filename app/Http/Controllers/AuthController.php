@@ -104,6 +104,7 @@ class AuthController extends Controller
             ], 401);
             
         }
+        $user = User::find($userId);
         $user->api_token = null;
         $user->save();
         return response()->json([
