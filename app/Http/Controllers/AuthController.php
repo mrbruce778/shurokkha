@@ -91,4 +91,24 @@ class AuthController extends Controller
             ]
         ]);
     }
+    public function logout(Request $request)
+    {
+        $request->validate([
+            'api_token' => 'required|string',
+        ]);
+        $userId = $this->userIDFromToken($request->api_token);
+        if(!$userId){
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid token',
+            ], 401);
+            
+        }
+        $user->api_token = null;
+        $user->save();
+        return response()->json([
+            'success' => true,
+            'message' => 'Logout Successful'
+        ],200);
+    }
 }
