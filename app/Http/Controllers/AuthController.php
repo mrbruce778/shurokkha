@@ -169,7 +169,7 @@ class AuthController extends Controller
 
         if(!$user){
             return response()->json([
-                'status' => 'false',
+                'status' => false,
                 'message' => 'Invalid user'
             ], 401);
         }
@@ -177,7 +177,7 @@ class AuthController extends Controller
         $user->delete();
         
         return response()->json([
-            'status' => 'true',
+            'status' => true,
             'message' => 'Id deleted successfully'
         ]);
     }
