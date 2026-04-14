@@ -163,12 +163,9 @@ class AuthController extends Controller
             'data' => $users
         ]);
     }
-    public function deleteAccount(Request $request)
+    public function deleteAccount($id)
     {
-        $request->validate([
-            'api_token' => 'required|string',
-        ]);
-        $user = User::where('api_token',$request->api_token)->first();
+        $user = User::find($id);
 
         if(!user){
             return response()->json([
