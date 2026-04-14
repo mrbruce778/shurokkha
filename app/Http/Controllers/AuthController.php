@@ -121,7 +121,7 @@ class AuthController extends Controller
                 'string',
                 Rule::unique('users')->ignore($user->id),
             ],
-            'account_type' => 'nullable|in:men,women',
+            'account_type' => 'nullable|in:child,women',
             'profile_image' => 'nullable|string', // base64 string
         ]);
 
@@ -150,6 +150,54 @@ class AuthController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'Profile updated successfully',
+            'data' => $user
+        ]);
+    }
+    public function getAllUsers()
+    {
+        $users = User::select('id', 'full_name', 'email', 'username', 'phone_no', 'account_type')->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'All users fetched successfully',
+            'data' => $users
+        ]);
+    }
+    public function deleteAccount(Request $request)
+    {
+        $request->validate([
+            'api_token' => 'required|string',
+        ]);
+        $user = User::where('api_token',$request->api_token)->first();
+
+        if(!user){
+            return response()->json([
+                'status' => 'false',
+                'message' => 'Invalid user'
+            ], 401);
+        }
+
+        $user->delete();
+        
+        return response()->json([
+            'status' => 'true',
+            'message' => 'Id deleted successfully'
+        ]);
+    }
+    public function getUser($id)
+    {
+        $user = User::find($id);
+        if(!$user)
+        {
+            return response()->json([
+                'status' => false,
+                'message' => 'User not found'
+            ], 404);
+
+        }
+        return response()->json([
+            'status' => true,
+            'message' => 'User fetched successfully',
             'data' => $user
         ]);
     }
