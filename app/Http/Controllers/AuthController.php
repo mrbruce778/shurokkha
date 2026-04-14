@@ -167,7 +167,7 @@ class AuthController extends Controller
     {
         $user = User::find($id);
 
-        if(!user){
+        if(!$user){
             return response()->json([
                 'status' => 'false',
                 'message' => 'Invalid user'
